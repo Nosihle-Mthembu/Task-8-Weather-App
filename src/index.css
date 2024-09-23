@@ -1,0 +1,185 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background:url(./assets/tom-barrett-hgGplX3PFBg-unsplash.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:100%;
+  color: white;
+}
+
+
+.weather-app {
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 20px;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 70%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.daily-forecast {
+  width: 25%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.header {
+  text-align: left;
+}
+
+.header h2, .header p {
+  margin: 0;
+  padding: 0;
+}
+
+.current-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.temp-wind {
+  margin-top: 20px;
+}
+
+.hourly-forecast {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.hour {
+  text-align: center;
+}
+
+.daily-forecast {
+  width: 25%;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.daily-forecast h3 {
+  margin-top: 0;
+}
+
+.forecast-options button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+.day-forecast {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.temp-wind p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+}
+
+.temp-wind p svg {
+  margin-right: 8px; /* Space between icon and text */
+}
+
+.main-content, .daily-forecast {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Deeper shadow for more depth */
+}
+
+.forecast-options button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.forecast-options button:hover {
+  background: white;
+  color: #1f2a38;
+  transform: translateY(-2px); /* Button pop-up on hover */
+}
+
+.hour {
+  transition: transform 0.3s ease;
+}
+
+.hour:hover {
+  transform: translateY(-5px); /* Pop-up effect for hourly forecast on hover */
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 20px; /* Center and add margin */
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  width: 80%;
+  padding: 10px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+}
+
+.search-bar input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-bar input:focus {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.search-bar button {
+  margin-left: 10px;
+  padding: 10px 15px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #1f2a38;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: white;
+  transform: translateY(-2px);
+}
+
+.search-bar button:focus {
+  outline: none;
+}
