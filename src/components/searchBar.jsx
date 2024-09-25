@@ -1,27 +1,30 @@
-// src/components/SearchBar.jsx
 import React, { useState } from 'react';
 
 const SearchBar = ({ onSearch }) => {
-  const [city, setCity] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (city) {
-      onSearch(city);
-      setCity(''); // Clear the input after search
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      onSearch(inputValue);
+      setInputValue(''); // Clear the input after searching
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="search-bar">
+    <div className="search-bar">
       <input
         type="text"
-        placeholder="Search for a city..."
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
+        value={inputValue}
+        onChange={handleInputChange}
+        onKeyPress={handleKeyPress}
+        placeholder="Enter location"
       />
-      <button type="submit">Search</button>
-    </form>
+      <button onClick={() => { onSearch(inputValue); setInputValue(''); }}>Search</button>
+    </div>
   );
 };
 

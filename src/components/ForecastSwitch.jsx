@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import CurrentWeather from './CurrentWeather'; // Component for current weather
-import HourlyForecast from './HourlyWeather';  // Component for hourly weather
-import DailyForecast from './DailyWeather';    // Component for daily weather
+import CurrentWeather from './CurrentWeather';
+import HourlyForecast from './HourlyWeather';
+import DailyForecast from './DailyWeather';
 
 const ForecastSwitch = ({ currentWeather, hourlyWeather, dailyWeather, lat, lon }) => {
   const [forecastType, setForecastType] = useState('current');

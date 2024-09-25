@@ -7,14 +7,15 @@ const CurrentWeather = ({ weather }) => {
 
   return (
     <div className="current-weather">
-      <h1>{weather.weather[0].description}</h1> {/* Current weather description */}
+      <h1>{weather.weather[0].description}</h1>
+      <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="icon" />
       <div className="temp-wind">
-        <h2>{Math.round(weather.temp)}°C</h2> {/* Current temperature */}
+        <h2>{Math.round(weather.main.temp)}°C</h2>
         <p>
-          <FontAwesomeIcon icon={faWind} /> {weather.wind_deg}°, {weather.wind_speed} m/s {/* Wind speed and direction */}
+          <FontAwesomeIcon icon={faWind} /> {weather.wind.deg}°, {weather.wind.speed} m/s
         </p>
         <p>
-          <FontAwesomeIcon icon={faCloudRain} /> {weather.weather[0].main} {/* Main weather condition */}
+          <FontAwesomeIcon icon={faCloudRain} /> {weather.weather[0].main}
         </p>
       </div>
     </div>
