@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from './components/Header';
 import CurrentWeather from './components/CurrentWeather';
-import HourlyForecast from './components/HourlyWeather'; // Ensure the import matches the filename
+import HourlyForecast from './components/HourlyWeather';
 import DailyForecast from './components/DailyWeather';
-import SearchBar from './components/SearchBar'; // Import the SearchBar component
+import SearchBar from './components/SearchBar';
 import './index.css';
 
 const App = () => {
@@ -12,6 +12,7 @@ const App = () => {
   const [dailyWeather, setDailyWeather] = useState([]);
   const [hourlyWeather, setHourlyWeather] = useState([]);
   const [location, setLocation] = useState('');
+  const [unit, setUnit] = useState('metric');
   const apiKey = '235407757cdf98cace4e2245ea49690a';
 
   useEffect(() => {
@@ -45,6 +46,10 @@ const App = () => {
   const dateString = currentDate.toLocaleDateString();
   const timeString = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+  const toggleUnit = () => {
+    setUnit((prevUnit) => (prevUnit === 'metric' ? 'imperial' : 'metric'));
+  };
+
   return (
     <div className="weather-app">
       <div className="main-content">
@@ -52,6 +57,9 @@ const App = () => {
         date={dateString} 
         time={timeString} />
         <SearchBar onSearch={handleSearch} />
+        <button className='toggleTemp' onClick={toggleUnit}>
+        Switch by {unit === 'metric' ? 'Fahrenheit' : 'Celsius'}
+        </button>
         {currentWeather && <CurrentWeather weather={currentWeather} />}
         <HourlyForecast hourlyWeather={hourlyWeather} />
       </div>
