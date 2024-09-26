@@ -19,11 +19,11 @@ const App = () => {
     if (location) {
       fetchWeatherData(location);
     }
-  }, [location]);
+  }, [location, unit]);
 
   const fetchWeatherData = async (city) => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${unit}`;
 
     try {
       const currentResponse = await axios.get(url);
@@ -58,13 +58,13 @@ const App = () => {
         time={timeString} />
         <SearchBar onSearch={handleSearch} />
         <button className='toggleTemp' onClick={toggleUnit}>
-        Switch by {unit === 'metric' ? 'Fahrenheit' : 'Celsius'}
+        Switch to {unit === 'metric' ? 'Fahrenheit' : 'Celsius'}
         </button>
-        {currentWeather && <CurrentWeather weather={currentWeather} />}
-        <HourlyForecast hourlyWeather={hourlyWeather} />
+        {currentWeather && <CurrentWeather weather={currentWeather} unit={unit} />}
+        <HourlyForecast hourlyWeather={hourlyWeather} unit={unit} />
       </div>
       <div className="daily-forecast">
-        <DailyForecast dailyWeather={dailyWeather} />
+        <DailyForecast dailyWeather={dailyWeather} unit={unit}/>
       </div>
     </div>
   );

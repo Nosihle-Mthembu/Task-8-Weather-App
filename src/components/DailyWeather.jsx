@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DailyForecast = ({ dailyWeather }) => {
+const DailyForecast = ({ dailyWeather, unit }) => {
   return (
       <div>
       <h3>The Next Days Forecast</h3>
@@ -8,14 +8,14 @@ const DailyForecast = ({ dailyWeather }) => {
         <button>Daily</button>
         <button>Weekly</button>
       </div>
-      {dailyWeather.map((day, index) => (
-        <div key={index} className="day-forecast">
-          <p>{new Date(day.dt * 1000).toLocaleDateString()}</p>
-          <p>Temperature: {day.main.temp} °C</p>
-          <p>Weather: {day.weather[0].description}</p>
-        </div>
+       {dailyWeather.map((day, index) => (
+          <div key={index} className="day-forecast">
+            <h3>{new Date(day.dt * 1000).toLocaleDateString()}</h3>
+            <p>Temperature: {Math.round(day.main.temp)}° {unit === 'metric' ? 'C' : 'F'}</p>
+            <p>Weather: {day.weather[0].description}</p>
+          </div>
       ))}
-      </div>
+    </div>
   );
 };
 
