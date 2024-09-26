@@ -5,6 +5,7 @@ import CurrentWeather from './components/CurrentWeather';
 import HourlyForecast from './components/HourlyWeather';
 import DailyForecast from './components/DailyWeather';
 import SearchBar from './components/SearchBar';
+import Alerts from './components/alerts';
 import './index.css';
 
 const App = () => {
@@ -15,16 +16,15 @@ const App = () => {
   const [unit, setUnit] = useState('metric');
   const [backgroundClass, setBackgroundClass] = useState('');
   const [savedLocations, setSavedLocations] = useState([]);
+  const [alerts, setAlerts] = useState([]);
   const apiKey = '235407757cdf98cace4e2245ea49690a';
 
   useEffect(() => {
-    // Load saved locations from local storage
     const storedLocations = JSON.parse(localStorage.getItem('savedLocations')) || [];
     setSavedLocations(storedLocations);
 
     const cachedWeather = JSON.parse(localStorage.getItem('cachedWeather'));
     if (cachedWeather) {
-      // Use cached data if available
       setCurrentWeather(cachedWeather.current);
       setDailyWeather(cachedWeather.daily);
       setHourlyWeather(cachedWeather.hourly);
@@ -35,19 +35,6 @@ const App = () => {
     }
   }, [location, unit]);
 
-  const fetchWeatherAlerts = async (lat, lon) => {
-    const alertsUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&exclude=hourly,daily`;
-    try {
-        const response = await axios.get(alertsUrl);
-        if (response.data.alerts) {
-            alert(response.data.alerts[0].description); // Display the alert description
-        }
-    } catch (error) {
-        console.error('Error fetching weather alerts:', error);
-    }
-};
-
-
   const fetchWeatherData = async (city) => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${unit}`;
@@ -56,9 +43,6 @@ const App = () => {
       const currentResponse = await axios.get(url);
       setCurrentWeather(currentResponse.data);
       saveLocation(city);
-      
-      const { coord } = currentResponse.data;
-      fetchWeatherAlerts(coord.lat, coord.lon);
 
       const forecastResponse = await axios.get(forecastUrl);
       const filteredDaily = forecastResponse.data.list.filter((_, index) => index % 8 === 0);
@@ -72,9 +56,27 @@ const App = () => {
         hourly: forecastResponse.data.list.slice(0, 8)
       }));
       
-      saveLocation(city);
     } catch (error) {
       console.error('Error fetching weather data:', error);
+    }
+  };
+
+  const fetchWeatherDataWithAlerts = async (lat, lon) => {
+    const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
+    
+    try {
+      const response = await axios.get(url);
+      console.log(response.data);
+      
+      if (response.data.alerts) {
+        setAlerts(response.data.alerts);
+        console.log("Weather Alerts:", response.data.alerts); 
+      } else {
+        setAlerts([]);
+        console.log("No alerts available");
+      }
+    } catch (error) {
+      console.error('Error fetching weather data with alerts:', error);
     }
   };
 
@@ -86,12 +88,12 @@ const App = () => {
     if (!savedLocations.includes(city)) {
       const updatedLocations = [...savedLocations, city];
       setSavedLocations(updatedLocations);
-      localStorage.setItem('savedLocations', JSON.stringify(updatedLocations)); // Save to local storage
+      localStorage.setItem('savedLocations', JSON.stringify(updatedLocations));
     }
   };
 
   const handleSavedLocationClick = (city) => {
-    setLocation(city); // Set the location to the clicked saved location
+    setLocation(city); 
   };
 
   const handleLocate = () => {
@@ -113,8 +115,7 @@ const App = () => {
     try {
       const currentResponse = await axios.get(url);
       setCurrentWeather(currentResponse.data);
-
-      fetchWeatherAlerts(lat, lon);
+      fetchWeatherDataWithAlerts(lat, lon);
 
       const forecastResponse = await axios.get(forecastUrl);
       const filteredDaily = forecastResponse.data.list.filter((_, index) => index % 8 === 0);
@@ -173,8 +174,8 @@ const App = () => {
               </li>
             ))}
           </ul>
-        
         </div>
+        <Alerts alerts={alerts} />
         {currentWeather && <CurrentWeather weather={currentWeather} unit={unit} />}
         <HourlyForecast hourlyWeather={hourlyWeather} unit={unit} />
         
