@@ -10,7 +10,7 @@ friendly features.</p>
 <p>cd to your folder</p>
 <p>git clone (link) that you copied</p>
 
-<h1>In Vs Code</h1>
+<h1>In VS Code</h1>
 <p>Open Terminal</p>
 <p>git checkout Nosihle</p>
 <p>npm i</p>
