@@ -4,12 +4,11 @@
 <p>Weather App that provides real-time weather information and various user-
 friendly features.</p>
 <h1>To open the app</h1>
-<p>
-First clone the app using the link on this page.
-copy it.
-Open your command line
-cd to your folder
-git clone (link) that you copied</p>
+<p>First clone the app using the link on this page.</p>
+<p>copy it.</p>
+<p>Open your command line</p>
+<p>cd to your folder</p>
+<p>git clone (link) that you copied</p>
 
 <h1>In Vs Code</h1>
 <p>Open Terminal</p>
