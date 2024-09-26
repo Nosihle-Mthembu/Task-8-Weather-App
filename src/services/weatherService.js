@@ -2,7 +2,6 @@
 
 export const getWeatherDetails = async (lat, lon) => {
   const API_KEY = '37465ca53b147f065a6a650e5132164e'; 
-  // const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&units=metric&appid=${API_KEY}`;
   const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
 
   try {
@@ -32,7 +31,7 @@ export const getWeatherByCity = async (city) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log('Weather by city response:', data); // Log the response
+    console.log('Weather by city response:', data);
     
     if (!response.ok) {
       throw new Error(`City not found: ${city}`);

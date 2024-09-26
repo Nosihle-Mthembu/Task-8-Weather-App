@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, onLocate}) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (event) => {
@@ -10,7 +10,7 @@ const SearchBar = ({ onSearch }) => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       onSearch(inputValue);
-      setInputValue(''); // Clear the input after searching
+      setInputValue(''); 
     }
   };
 
@@ -24,6 +24,7 @@ const SearchBar = ({ onSearch }) => {
         placeholder="Enter location"
       />
       <button onClick={() => { onSearch(inputValue); setInputValue(''); }}>Search</button>
+      <button onClick={onLocate}>Use My Location</button>
     </div>
   );
 };

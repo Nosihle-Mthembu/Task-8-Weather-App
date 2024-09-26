@@ -24,7 +24,7 @@ body {
   background: rgba(255, 255, 255, 0.1);
   padding: 20px;
   border-radius: 10px;
-  backdrop-filter: blur(10px); /* Frosted glass effect */
+  backdrop-filter: blur(10px);
 }
 
 .daily-forecast {
@@ -37,7 +37,7 @@ body {
 }
 
 .main-content, .daily-forecast {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Deeper shadow for more depth */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .header {
@@ -74,7 +74,7 @@ body {
 }
 
 .hour:hover {
-  transform: translateY(-5px); /* Pop-up effect for hourly forecast on hover */
+  transform: translateY(-5px);
 }
 
 .daily-forecast h3 {
@@ -98,7 +98,7 @@ body {
 }
 
 .day-forecast {
-  /* margin-top: 2px; */
+  margin-top: 25px;
   line-height: 5px;
   display: grid;
   justify-content: space-between;
@@ -112,13 +112,13 @@ body {
 }
 
 .temp-wind p svg {
-  margin-right: 8px; /* Space between icon and text */
+  margin-right: 8px;
 }
 
 .search-bar {
   width: 100%;
   max-width: 400px;
-  margin: 0 auto 20px; /* Center and add margin */
+  margin: 0 auto 20px;
   display: flex;
   justify-content: center;
 }
@@ -165,6 +165,7 @@ body {
 }
 
 .toggleTemp {
+  /* width: 15%; */
   padding: 10px 15px;
   border: none;
   background-color: rgba(255, 255, 255, 0.5);
@@ -178,3 +179,30 @@ body {
   background-color: white;
   transform: translateY(-2px);
 }
+
+/* Default styles for the weather app */
+.weather-app {
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background 0.5s ease-in-out;
+}
+
+/* Background classes for different weather conditions */
+.sunny {
+  background-image: url('../public/pexels-tugba-27679978.jpg');
+}
+
+.rainy {
+  background-image: url('../public/pexels-apasaric-1530423.jpg');
+}
+
+.cloudy {
+  background-image: url('../public/pexels-tkirkgoz-19447468.jpg');
+}
+
+.snowy {
+  background-image: url('../public/pexels-eberhardgross-3389613.jpg');
+}
+
