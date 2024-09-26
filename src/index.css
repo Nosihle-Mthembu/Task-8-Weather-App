@@ -98,8 +98,8 @@ body {
 }
 
 .day-forecast {
-  margin-top: 25px;
-  line-height: 5px;
+  margin-top: 10px;
+  line-height: 3px;
   display: grid;
   justify-content: space-between;
 }

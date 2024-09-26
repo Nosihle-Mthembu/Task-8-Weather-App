@@ -115,7 +115,7 @@ const App = () => {
         <HourlyForecast hourlyWeather={hourlyWeather} unit={unit} />
       </div>
       <div className="daily-forecast">
-        <DailyForecast dailyWeather={dailyWeather} unit={unit}/>
+        <DailyForecast dailyWeather={dailyWeather} unit={unit} />
       </div>
     </div>
   );
